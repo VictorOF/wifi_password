@@ -56,7 +56,9 @@ defmodule WifiPassword do
         end
 
       {:win32, :nt} ->
-        {:error, :not_implemented}
+        case System.cmd("netsh", ["wlan", "show", "profile", "name=" <> ssid, "key=clear"]) do
+          a -> IO.inspect(a)
+        end
     end
   end
 end
